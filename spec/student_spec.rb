@@ -1,5 +1,7 @@
 require 'rspec'
 require 'date'
+require  'pry'
+require 'pry-doc'
 require_relative '../app/models/student'
 
 
@@ -20,9 +22,11 @@ describe Student, "#name and #age" do
 
   it "should have name and age methods" do
     [:name, :age].each { |mthd| @student.should respond_to mthd }
+    # binding.pry
   end
 
   it "should concatenate first and last name" do
+    # binding.pry
     @student.name.should == "Happy Gilmore"
   end
 
@@ -60,6 +64,7 @@ describe Student, "validations" do
   it "shouldn't accept invalid emails" do
     ["XYZ!bitnet", "@.", "a@b.c"].each do |address|
       @student.assign_attributes(:email => address)
+      # binding.pry
       @student.should_not be_valid
     end
   end
@@ -67,6 +72,7 @@ describe Student, "validations" do
   it "should accept valid emails" do
     ["joe@example.com", "info@bbc.co.uk", "bugs@devbootcamp.com"].each do |address|
       @student.assign_attributes(:email => address)
+      # binding.pry
       @student.should be_valid
     end
   end
